@@ -6,6 +6,9 @@ const products = [
   { name: "Cabbage", country: "USA", cost: 1, instock: 8 },
 ];
 
+const picsumURL = 'https://picsum.photos/id/';
+const baseURL = 'http://localhost:1337/products';
+
 const useDataApi = (initialUrl, initialData) => {
   const { useState, useEffect, useReducer } = React;
   const [url, setUrl] = useState(initialUrl);
@@ -76,9 +79,9 @@ const Products = () => {
 
   //  Fetch Data
   const { Fragment, useState, useEffect, useReducer } = React;
-  const [query, setQuery] = useState("http://localhost:1337/products");
+  const [query, setQuery] = useState(baseURL);
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    "http://localhost:1337/products",
+    baseURL,
     {
       data: [],
     }
@@ -90,7 +93,7 @@ const Products = () => {
     let name = e.target.name;
     let newItem = items.filter((item) => item.name == name)[0];
     if (newItem.instock == 0) return
-    newItem.instock -= 1
+    newItem.instock -= 1;
     console.log(`add to Cart ${JSON.stringify(newItem)}`);
     // Update stock
     setItems(
@@ -116,7 +119,7 @@ const Products = () => {
   };
 
   let list = items.map((item, index) => {
-    let imageURL = `https://picsum.photos/id/${index + 1049}/50/50`;
+    let imageURL = `${picsumURL}${index + 1049}/50/50`;
 
     return (
       <li key={index}>
@@ -126,8 +129,8 @@ const Products = () => {
           Instock: {item.instock}
         </Button><br />
         {item.instock > 0 ?
-          <input name={item.name} type="submit" class="add-to-cart" value="Add To Cart" onClick={addToCart}></input> :
-          <input name={item.name} type="submit" class="add-to-cart" value="Add To Cart" disabled></input>}
+          <input name={item.name} type="submit" className="add-to-cart" value="Add To Cart" onClick={addToCart}></input> :
+          <input name={item.name} type="submit" className="add-to-cart" value="Add To Cart" disabled></input>}
       </li>
     );
   });
@@ -170,8 +173,10 @@ const Products = () => {
     console.log(`total updated to ${newTotal}`);
     return newTotal;
   };
+
   // TODO: implement the restockProducts function
-  const restockProducts = (url) => { };
+  const restockProducts = (url) => {
+  };
 
   return (
     <Container>
@@ -193,7 +198,7 @@ const Products = () => {
       <Row>
         <form
           onSubmit={(event) => {
-            restockProducts(`http://localhost:1337/${query}`);
+            restockProducts(`${query}`);
             console.log(`Restock called on ${query}`);
             event.preventDefault();
           }}
