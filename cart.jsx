@@ -83,15 +83,22 @@ const Products = () => {
       data: [],
     }
   );
+
   console.log(`Rendering Products ${JSON.stringify(data)}`);
   // Fetch Data
   const addToCart = (e) => {
     let name = e.target.name;
-    let item = items.filter((item) => item.name == name);
-    console.log(`add to Cart ${JSON.stringify(item)}`);
-    setCart([...cart, ...item]);
-    //doFetch(query);
+    let newItem = items.filter((item) => item.name == name)[0];
+    newItem.instock -= 1
+    console.log(`add to Cart ${JSON.stringify(newItem)}`);
+    // Change stock
+    setItems(
+      items.map((item) => item.name === name ? newItem : item)
+    );
+    // Add item to cart
+    setCart([...cart, newItem]);
   };
+
   const deleteCartItem = (index) => {
     let newCart = cart.filter((item, i) => index != i);
     setCart(newCart);
@@ -105,7 +112,8 @@ const Products = () => {
       <li key={index}>
         <Image src={imageURL} width={70} roundedCircle></Image>
         <Button variant="primary" size="large">
-          {item.name}:{item.cost}
+          {item.name}:{item.cost}<br />
+          Instock: {item.instock}
         </Button>
         <input name={item.name} type="submit" onClick={addToCart}></input>
       </li>
