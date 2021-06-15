@@ -5,6 +5,7 @@ const products = [
   { name: "Beans__:", country: "USA", cost: 2, instock: 5 },
   { name: "Cabbage:", country: "USA", cost: 1, instock: 8 },
 ];
+
 //=========Cart=============
 const Cart = (props) => {
   const { Card, Accordion, Button } = ReactBootstrap;
@@ -113,12 +114,11 @@ const Products = (props) => {
   const photos = ["apple.png", "orange.png", "beans.png", "cabbage.png"];
 
   let list = items.map((item, index) => {
-    //let n = index + 1049;
-    //let url = "https://picsum.photos/id/" + n + "/50/50";
+    let imageURL = `https://picsum.photos/id/${index + 1049}/50/50`;
 
     return (
       <li key={index}>
-        <Image src={photos[index % 4]} width={70} roundedCircle></Image>
+        <Image src={imageURL} width={70} roundedCircle></Image>
         <Button variant="primary" size="large">
           {item.name}:{item.cost}
         </Button>
@@ -166,7 +166,7 @@ const Products = (props) => {
     return newTotal;
   };
   // TODO: implement the restockProducts function
-  const restockProducts = (url) => {};
+  const restockProducts = (url) => { };
 
   return (
     <Container>
