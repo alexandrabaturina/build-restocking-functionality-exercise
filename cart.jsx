@@ -106,7 +106,6 @@ const Products = () => {
   const deleteCartItem = (index) => {
     let newCart = cart.filter((item, i) => index != i);
     let itemToDelete = cart.filter((item, i) => index === i)[0]
-    console.log(itemToDelete.name)
     setCart(newCart);
 
     // Update stock
@@ -174,8 +173,20 @@ const Products = () => {
     return newTotal;
   };
 
-  // TODO: implement the restockProducts function
+  // Restock products
   const restockProducts = (url) => {
+    doFetch(url);
+    const restocked = data.map(product => {
+      const { name, country, cost, instock } = product;
+      return { name, country, cost, instock };
+    });
+    // Update instock
+    restocked.map(dbItem => {
+      items.map(item => {
+        if (item.name === dbItem.name) dbItem.instock += item.instock
+      })
+    })
+    setItems(restocked);
   };
 
   return (
