@@ -89,6 +89,7 @@ const Products = () => {
   const addToCart = (e) => {
     let name = e.target.name;
     let newItem = items.filter((item) => item.name == name)[0];
+    if (newItem.instock == 0) return
     newItem.instock -= 1
     console.log(`add to Cart ${JSON.stringify(newItem)}`);
     // Change stock
@@ -115,7 +116,9 @@ const Products = () => {
           {item.name}:{item.cost}<br />
           Instock: {item.instock}
         </Button>
-        <input name={item.name} type="submit" onClick={addToCart}></input>
+        {item.instock > 0 ?
+          <input name={item.name} type="submit" onClick={addToCart}></input> :
+          <input name={item.name} type="submit" disabled></input>}
       </li>
     );
   });
