@@ -92,7 +92,7 @@ const Products = () => {
     if (newItem.instock == 0) return
     newItem.instock -= 1
     console.log(`add to Cart ${JSON.stringify(newItem)}`);
-    // Change stock
+    // Update stock
     setItems(
       items.map((item) => item.name === name ? newItem : item)
     );
@@ -102,8 +102,19 @@ const Products = () => {
 
   const deleteCartItem = (index) => {
     let newCart = cart.filter((item, i) => index != i);
+    let itemToDelete = cart.filter((item, i) => index === i)[0]
+    console.log(itemToDelete.name)
     setCart(newCart);
+
+    // Update stock
+    let newItem = items.filter(item => item.name == itemToDelete.name)[0]
+    let name = newItem.name
+    newItem.instock += 1
+    setItems(
+      items.map((item) => item.name === name ? newItem : item)
+    )
   };
+
   const photos = ["apple.png", "orange.png", "beans.png", "cabbage.png"];
 
   let list = items.map((item, index) => {
