@@ -126,10 +126,10 @@ const Products = () => {
         <Button variant="primary" size="large">
           {item.name}:{item.cost}<br />
           Instock: {item.instock}
-        </Button>
+        </Button><br />
         {item.instock > 0 ?
-          <input name={item.name} type="submit" onClick={addToCart}></input> :
-          <input name={item.name} type="submit" disabled></input>}
+          <input name={item.name} type="submit" class="add-to-cart" value="Add To Cart" onClick={addToCart}></input> :
+          <input name={item.name} type="submit" class="add-to-cart" value="Add To Cart" disabled></input>}
       </li>
     );
   });
