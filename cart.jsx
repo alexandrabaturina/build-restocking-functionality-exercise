@@ -1,9 +1,9 @@
 // simulate getting products from DataBase
 const products = [
-  { name: "Apples_:", country: "Italy", cost: 3, instock: 10 },
-  { name: "Oranges:", country: "Spain", cost: 4, instock: 3 },
-  { name: "Beans__:", country: "USA", cost: 2, instock: 5 },
-  { name: "Cabbage:", country: "USA", cost: 1, instock: 8 },
+  { name: "Apples", country: "Italy", cost: 3, instock: 10 },
+  { name: "Oranges", country: "Spain", cost: 4, instock: 3 },
+  { name: "Beans", country: "USA", cost: 2, instock: 5 },
+  { name: "Cabbage", country: "USA", cost: 1, instock: 8 },
 ];
 
 const useDataApi = (initialUrl, initialData) => {
@@ -115,8 +115,6 @@ const Products = () => {
     )
   };
 
-  const photos = ["apple.png", "orange.png", "beans.png", "cabbage.png"];
-
   let list = items.map((item, index) => {
     let imageURL = `https://picsum.photos/id/${index + 1049}/50/50`;
 
@@ -124,7 +122,7 @@ const Products = () => {
       <li key={index}>
         <Image src={imageURL} width={70} roundedCircle></Image>
         <Button variant="primary" size="large">
-          {item.name}:{item.cost}<br />
+          {item.name}: ${item.cost}<br />
           Instock: {item.instock}
         </Button><br />
         {item.instock > 0 ?
