@@ -1,9 +1,10 @@
 // simulate getting products from DataBase
 const products = [
-  { name: "Apples", country: "Italy", cost: 3, instock: 10 },
+  { name: "Apples", country: "Italy", cost: 3, instock: 2 },
   { name: "Oranges", country: "Spain", cost: 4, instock: 3 },
   { name: "Beans", country: "USA", cost: 2, instock: 5 },
   { name: "Cabbage", country: "USA", cost: 1, instock: 8 },
+  { name: "Avocados", country: "Mexico", cost: 1, instock: 10 },
 ];
 
 const picsumURL = 'https://picsum.photos/id/';
